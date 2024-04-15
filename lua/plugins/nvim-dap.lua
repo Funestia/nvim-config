@@ -14,6 +14,24 @@ return {
 			command = '/usr/bin/lldb-vscode',
 			name = 'lldb'
 		}
+		dap.adapters["pwa-node"] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				args = { "/Users/florian/nvim/js-debug/src/dapDebugServer.js", "${port}" },
+			}
+		}
+		dap.configurations.javascript = {
+			{
+				type = "pwa-node",
+				request = "launch",
+				name = "Launch file",
+				program = "${file}",
+				cwd = "${workspaceFolder}",
+			},
+		}
 		dap.configurations.cpp = {
 			{
 				name = 'Launch',

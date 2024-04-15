@@ -5,23 +5,37 @@ return {
 		-- LSP Support
 		{ 'neovim/nvim-lspconfig' },       -- Required
 		{ 'williamboman/mason.nvim' },     -- Optional
-		{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
+		{ 'williamboman/mason-lspconfig.nvim' }, -- Optiona
+		{ 'mason-org/mason-registry' },
 		-- Autocompletion
-		{ 'hrsh7th/nvim-cmp' },            -- Required
-		{ 'hrsh7th/cmp-nvim-lsp' },        -- Required
+		{ 'hrsh7th/nvim-cmp' }, -- Required
+		{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
 		{ 'hrsh7th/cmp-path' },
-		{ 'L3MON4D3/LuaSnip' },            -- Required
+		{ 'L3MON4D3/LuaSnip' }, -- Required
 		{ 'onsails/lspkind.nvim' },
 
 		{
 			'folke/trouble.nvim',
-			config
 		}
 
 	},
 	config = function()
 		local lsp = require('lsp-zero').preset("recommended")
+		local mason_registry = require('mason-registry')
 		local lspconfig = require('lspconfig')
+		local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+		'/node_modules/@vue/language-server'
+
+		lspconfig.tsserver.setup {
+			init_options = {
+				plugins = {
+					name = '@vue/typescript-plugin',
+					location = vue_language_server_path,
+					languages = { 'vue' },
+				},
+				filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+			}
+		}
 
 		lspconfig.lua_ls.setup {
 			on_init = function(client)
