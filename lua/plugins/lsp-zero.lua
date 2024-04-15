@@ -24,7 +24,7 @@ return {
 		local mason_registry = require('mason-registry')
 		local lspconfig = require('lspconfig')
 		local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
-		'/node_modules/@vue/language-server'
+			'/node_modules/@vue/language-server'
 
 		lspconfig.tsserver.setup {
 			init_options = {
@@ -33,8 +33,8 @@ return {
 					location = vue_language_server_path,
 					languages = { 'vue' },
 				},
-				filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-			}
+			},
+			filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
 		}
 
 		lspconfig.lua_ls.setup {
