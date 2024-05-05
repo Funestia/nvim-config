@@ -14,6 +14,9 @@ return {
 		{ 'L3MON4D3/LuaSnip' }, -- Required
 		{ 'onsails/lspkind.nvim' },
 
+		{ 'nvim-lua/plenary.nvim' },
+		{ 'pmizio/typescript-tools.nvim' },
+
 		{
 			'folke/trouble.nvim',
 		}
@@ -23,8 +26,23 @@ return {
 		local lsp = require('lsp-zero').preset("recommended")
 		local mason_registry = require('mason-registry')
 		local lspconfig = require('lspconfig')
-		local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+		require("typescript-tools").setup {
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"vue",
+			},
+			settings = {
+				tsserver_plugins = {
+					"@vue/typescript-plugin",
+				}
+			}
+		}
+		--[[local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
 			'/node_modules/@vue/language-server'
+
 
 		lspconfig.tsserver.setup {
 			init_options = {
@@ -37,7 +55,7 @@ return {
 				}
 			},
 			filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-		}
+		}]]--
 
 		lspconfig.lua_ls.setup {
 			on_init = function(client)
