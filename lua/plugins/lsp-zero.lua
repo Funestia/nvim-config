@@ -102,7 +102,7 @@ return {
 			"eslint"
 		})
 		lsp.on_attach(function(client, bufnr)
-			vim.lsp.inlay_hint.enable(bufnr, true)
+			vim.lsp.inlay_hint.enable(true)
 		end)
 		lsp.setup()
 		local cmp = require('cmp')
