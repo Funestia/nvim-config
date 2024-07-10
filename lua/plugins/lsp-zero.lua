@@ -26,6 +26,9 @@ return {
 		local lsp = require('lsp-zero').preset("recommended")
 		local mason_registry = require('mason-registry')
 		local lspconfig = require('lspconfig')
+		lspconfig.intelephense.setup{
+
+		}
 		require("typescript-tools").setup {
 			filetypes = {
 				"javascript",
