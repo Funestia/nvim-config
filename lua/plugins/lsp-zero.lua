@@ -29,13 +29,20 @@ return {
 		lspconfig.intelephense.setup{
 
 		}
+		lspconfig.volar.setup {
+			init_options = {
+				vue = {
+					hybridMode = false,
+				},
+			},
+		}
 		require("typescript-tools").setup {
 			filetypes = {
 				"javascript",
 				"javascriptreact",
 				"typescript",
 				"typescriptreact",
-				"vue",
+				--"vue",
 			},
 			settings = {
 				tsserver_plugins = {
