@@ -108,7 +108,6 @@ return {
 			"rust_analyzer",
 			"clangd",
 			"lua_ls",
-			"tsserver",
 			"eslint"
 		})
 		lsp.on_attach(function(client, bufnr)
