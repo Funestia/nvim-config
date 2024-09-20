@@ -3,9 +3,7 @@ return {
 	dependencies = {
 		'leafo/magick',
 	},
-	config = function ()
-		require("image").setup({
-			backend = "ueberzug",
-		});
-	end
+	opts = {
+		backend = "ueberzug",
+	}
 }
