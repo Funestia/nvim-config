@@ -17,11 +17,23 @@ return {
 					sources = {'nvim_diagnostic'},
 				}
 			},
+			lualine_c = {
+				{
+					'filename',
+					path = 1,
+				}
+			},
 			lualine_z = {}
 		},
 		inactive_sections = {
 			lualine_a = {
 				'diagnostics'
+			},
+			lualine_c = {
+				{
+					'filename',
+					path = 1,
+				}
 			},
 			lualine_x = {'filetype'},
 			lualine_z = {'progress'}
