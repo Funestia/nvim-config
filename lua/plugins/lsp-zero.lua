@@ -19,13 +19,23 @@ return {
 
 		{
 			'folke/trouble.nvim',
-		}
+		},
+		{'nvim-java/nvim-java'}
 
 	},
 	config = function()
 		local lsp = require('lsp-zero').preset("recommended")
 		local mason_registry = require('mason-registry')
 		local lspconfig = require('lspconfig')
+		require('mason-lspconfig').setup {
+			handlers =  {
+				jdtls = function ()
+					require('java').setup({})
+					lspconfig.jdtls.setup({})
+				end
+			}
+		}
+		lspconfig.jdtls.setup({})
 		lspconfig.intelephense.setup{
 
 		}
@@ -103,12 +113,6 @@ return {
 			warn = '▲',
 			hint = '⚑',
 			info = '»'
-		})
-		lsp.ensure_installed({
-			"rust_analyzer",
-			"clangd",
-			"lua_ls",
-			"eslint"
 		})
 		lsp.on_attach(function(client, bufnr)
 			vim.lsp.inlay_hint.enable(true)
